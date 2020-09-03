@@ -68,31 +68,17 @@ class MyQtApp(main.Ui_MainWindow, QtWidgets.QMainWindow, photoeditorfinal.Ui_Mai
         # self.ui.horizontalSlide.valueChanged.connect(self.update_brightness)
 
     def browseImage(self):
+        """
+        this function opens the dialog box.
+        """
         foldername = QFileDialog.getOpenFileName(self, 'Open File', 'c\\', 'Pdf files (*.pdf)')
         pdffile = foldername[0]
         self.source_path.setText(pdffile)
 
-    def mask(self, image_front):
-        gray = cv2.cvtColor(image_front, cv2.COLOR_BGR2GRAY)
-        img = cv2.GaussianBlur(gray, (3, 3), 2)
-        thresh = cv2.adaptiveThreshold(img, 220, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 17, 10)
-        contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-
-        contours = sorted(contours, key=cv2.contourArea, reverse=True)
-        for i in range(1, len(contours)):
-            perimeter = cv2.arcLength(contours[i], True)  # true if curve is closed...perimeter means length of arc
-            epsilon = 0.01 * perimeter
-            approx = cv2.approxPolyDP(contours[i], epsilon,
-                                      True)  # approximates a polygonal curve with specified precision
-
-            if 13900 > cv2.contourArea(contours[i]) > 11000:
-                (x, y) = thresh.shape
-                mask = np.zeros((x, y, 3), np.uint8)
-                mask = cv2.drawContours(mask, [approx], -1, (255, 255, 255), -1)
-                mask = cv2.drawContours(mask, approx, -1, (255, 255), 5)
-                result = cv2.bitwise_and(mask, image_front)
-
     def fileloginform(self):
+        """
+        this function take the path of uploaded file and display it.
+        """
         pdffile = self.source_path.text()
         password = self.lineEdit_2.text()
         doc = fitz.open(pdffile)
@@ -105,14 +91,10 @@ class MyQtApp(main.Ui_MainWindow, QtWidgets.QMainWindow, photoeditorfinal.Ui_Mai
         image = cv2.imread("outfile.png")
 
         # cropping image____crop_img = img[y:y+h, x:x+w]
-        print(image.shape)
-
         image = image[1140:1475, 55:1120]
         cv2.imwrite("finalimage.png", image)
-        print("text1")
-        '''text = pytesseract.image_to_string(Image.open('finalimage.png'))
-        print(text)'''
-
+        
+        #these two images are generated from finalimage
         image_front = image[0:355, 4:523]
         image_back = image[0:355, 544:1065]
         cv2.imwrite("image_front.png", image_front)
@@ -128,11 +110,9 @@ class MyQtApp(main.Ui_MainWindow, QtWidgets.QMainWindow, photoeditorfinal.Ui_Mai
         #texting extract from front2 for DOB n etc
         text4 = pytesseract.image_to_string(image_front3)
 
-        print("image_front3",text4)
-
         #texting extract from front2 for name
         text = pytesseract.image_to_string(image_front2)
-        print("image_front2",text)
+       
 
         scale_percent = 75
 
@@ -171,7 +151,8 @@ class MyQtApp(main.Ui_MainWindow, QtWidgets.QMainWindow, photoeditorfinal.Ui_Mai
         pixmap = QPixmap("final_back.png")
         self.label_5.setPixmap(QPixmap(pixmap))
         self.resize(pixmap.width(), pixmap.height())
-
+    
+        #text extraction from adhar
         name = None
         gender = None
         ayear = None
