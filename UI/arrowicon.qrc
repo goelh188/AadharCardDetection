@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>right-arrow-icon-vector-21638885.jpg</file>
+  </qresource>
+</RCC>

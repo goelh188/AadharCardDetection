@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>C:/Users/ambik/Downloads/icons8-go-100.png</file>
+  </qresource>
+  <qresource prefix="newPrefix">
+    <file>C:/Users/ambik/Downloads/download.jpg</file>
+  </qresource>
+</RCC>
