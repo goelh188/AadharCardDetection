@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>toppoint.png</file>
+    <file>rightpoint.png</file>
+    <file>leftpoint.png</file>
+    <file>bottompoint.png</file>
+  </qresource>
+</RCC>
