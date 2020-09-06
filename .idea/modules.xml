@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/secureidentity.iml" filepath="$PROJECT_DIR$/.idea/secureidentity.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/main1.iml" filepath="$PROJECT_DIR$/.idea/main1.iml" />
+>>>>>>> 28a2c0a2177cdca648b2abbc01075370030ceb24
     </modules>
   </component>
 </project>
