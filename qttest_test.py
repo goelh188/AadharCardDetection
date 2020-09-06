@@ -338,4 +338,4 @@ if __name__ == "__main__":
     qt_app = MyQtApp()
     qt_app.show()
     sys.exit(app.exec_())
->>>>>>> 28a2c0a2177cdca648b2abbc01075370030ceb24
+
